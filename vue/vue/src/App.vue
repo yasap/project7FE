@@ -1,7 +1,11 @@
-git remote add origin https://github.com/yasap/project7New.git<template>
+<template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/post">post</router-link>
+    <router-link to="/account">account</router-link>
+    <router-link to="/signup">signup</router-link>
+    <router-link to="/signin">signin</router-link>
+    
   </div>
   <router-view/>
 </template>

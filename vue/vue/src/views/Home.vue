@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header>
- <img src="@/assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
+ <img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
 </header>
 
 <div class="menu"> 
@@ -27,14 +27,7 @@ the atmosphere at work. The following data was particularly eye-opening.<br>Here
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
 </script>
 
 <style>
