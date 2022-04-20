@@ -27,5 +27,45 @@
     </div>
 </template>
 <script>
+export default {
+    name: "signin",
+    data(){
+        return{
+            msg:""
+        }
+    },
+    methods:{
+        onsubmit(e){
+            e.preventDefault();
+            let myform = e.target;
+            let fName = myform.firstName.value;
+            let lName = myform.lastName.value;
+            let emailAddress = myform.email.value;
+            let pass = myform.psw.value;
 
+            let url = "http://localhost:3000/api/auth/signup";
+            let body =(firstName = fName,lastName = lName,userEmail =emailAddress,pass = password);
+            let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
+            // /Authorization" : "Bearer" + token
+
+            fetch(url,options)
+            .then(res=>res.json())
+            .then(result=>{
+                console.log("login result:" , result);
+                if(result.message){
+                    this.msg = result.message;
+                }
+                else{
+                    window.location.href = "http://localhost:8080/post";
+
+                }
+            })
+            .catch(e=>{
+                console.log(e);
+                this.msg = e;
+            })
+
+        }
+    }
+}
 </script>
