@@ -39,7 +39,7 @@ export default {
             let emailAddress = myform.email.value;
             let pass = myform.psw.value;
             let url = "http://localhost:3000/api/auth/login";
-            let body =(userEmail = emailAddress, pass = password);
+            let body =(userEmail:emailAddress, pass:password);
             let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
             // /Authorization" : "Bearer" + token
 

@@ -44,7 +44,7 @@ export default {
             let pass = myform.psw.value;
 
             let url = "http://localhost:3000/api/auth/signup";
-            let body =(firstName = fName,lastName = lName,userEmail =emailAddress,pass = password);
+            let body =(firstName:fName,lastName:lName,userEmail:emailAddress,pass:password);
             let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
             // /Authorization" : "Bearer" + token
 
