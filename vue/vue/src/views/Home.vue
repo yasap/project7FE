@@ -5,9 +5,10 @@
 </header>
 
 <div class="menu"> 
-  <a href="/account.html"><i class="fas fa-user"></i></a>
-  <a href="/post.html"><i class="fas fa-pen"></i></a>
-  <a href="/signin.html"><i class="fas fa-sign-out-alt"></i></a>
+  <a href="/account.vue"><i class="fas fa-user"></i></a>
+  <a href="/post.vue"><i class="fas fa-pen"></i></a>
+  <a href="/signin.vue"><i class="fas fa-sign-out-alt"></i></a>
+  <a href="/allPost.vue"><i class="fas fa-sign-out-alt"></i></a>
 </div>
 
 <div class="introduction">

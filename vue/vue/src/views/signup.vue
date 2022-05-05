@@ -2,12 +2,12 @@
     <div >
         <header>
  <img src="/photo/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
- <aside class="sign"><a href="/signin.html"> Sign In </a></aside>
+ <!-- <aside class="sign"><a href="/signin.html"> Sign In </a></aside> -->
 </header>
 
 
 
- <form class="container" id="myform"  method="post">
+ <form class="container" id="myform"  method="post" v-on:submit="onsubmit">
     <label for="uname">First Name</label>
     <input type="text" placeholder="Enter First Name" id="fname" name="fname" required/>
 
@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-    name: "signin",
+    name: "signup",
     data(){
         return{
             msg:""
@@ -38,15 +38,15 @@ export default {
         onsubmit(e){
             e.preventDefault();
             let myform = e.target;
-            let fName = myform.firstName.value;
-            let lName = myform.lastName.value;
+            let fName = myform.fname.value;
+            let lName = myform.sname.value;
             let emailAddress = myform.email.value;
             let pass = myform.psw.value;
 
             let url = "http://localhost:3000/api/auth/signup";
-            let body =(firstName:fName,lastName:lName,userEmail:emailAddress,pass:password);
+            let body ={firstName:fName,lastName:lName,userEmail:emailAddress,password:pass};
             let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
-            // /Authorization" : "Bearer" + token
+            
 
             fetch(url,options)
             .then(res=>res.json())
@@ -56,7 +56,7 @@ export default {
                     this.msg = result.message;
                 }
                 else{
-                    window.location.href = "http://localhost:8080/post";
+                    window.location.href = "http://localhost:8080/login";
 
                 }
             })

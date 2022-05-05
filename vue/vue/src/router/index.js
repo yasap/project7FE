@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import signup from "../views/signup.vue";
 import signin from "../views/signin.vue";
 import post from "../views/post.vue";
 import account from "../views/account.vue";
-
+import allPosts from "../views/allPosts.vue"
 const routes = [
   {
     path: '/',
@@ -31,11 +31,16 @@ const routes = [
     name: 'account',
     component: account
   },
+  {
+    path: '/allPosts',
+    name: 'allPosts',
+    component: allPosts
+  },
  
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 

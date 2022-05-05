@@ -6,13 +6,14 @@
 </header>
 
 <div class="menu"> 
-  <a href="/home.html"><i class="fas fa-home"></i></a>
-  <a href="/account.html"><i class="fas fa-user"></i></a>
-  <a href="/signin.html"><i class="fas fa-sign-out-alt"></i></a>
+  <a href="/account.vue"><i class="fas fa-user"></i></a>
+  <a href="/post.vue"><i class="fas fa-pen"></i></a>
+  <a href="/signin.vue"><i class="fas fa-sign-out-alt"></i></a>
+  <a href="/allPost.vue"><i class="fas fa-sign-out-alt"></i></a>
 
 </div>
 
-<form class="post">
+<form v-on:submit="onsubmit" class="post">
 
      <label for="text"> Title </label>
     <input type="text" id="title" placeholder="Title" name="title" required/>
@@ -44,14 +45,16 @@ export default {
             e.preventDefault();
             
             let myform = e.target;
-            let userID = myform.userID.value;
             let message = myform.message.value;
-            let Title = myform.title.value;
-            let Image = myform.image.value
-            let url = "http://localhost:3000/api/auth/login";
-            let body =(userID:userID, message:message; Title:title; Umage:image );
-            let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
-            // /Authorization" : "Bearer" + token
+            let title = myform.title.value;
+            let image = myform.img.files[0];
+            let session =JSON.parse(window.sessionStorage.getItem("credz"));
+            let token = session.token;
+            let userID = session.userID;
+            let url = "http://localhost:3000/api/post/addPost";
+            let body ={userID:userID, message:message, title:title, image:image};
+            let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
+           
 
             fetch(url,options)
             .then(res=>res.json())
@@ -61,7 +64,8 @@ export default {
                     this.msg = result.message;
                 }
                 else{
-                    window.location.href = "http://localhost:8080/post";
+                    
+                    window.location.href = "http://localhost:8080/allPost";
 
                 }
             })
