@@ -11,10 +11,41 @@
 </div>
 
 <div class="profile">
-    <h4>Name: Priya</h4>
-    <h4>Surname: Yasasvin</h4>
-    <h4>E-mail: priya@gmail.com</h4>
-    <button> Delete</button>
+    <h4>First Name: {{this.user.firstName}}</h4>
+    <h4>Last Name: {{this.user.lastName}}</h4>
+    <h4>E-mail: {{this.user.email}}</h4>
+    <h4>ID: {{this.user.userID}}</h4>
 </div>
         </div>
 </template>
+<script>
+
+
+export default {
+    name: 'singlePost',
+    data(){
+        return{
+            user:{},
+
+        }
+
+        },
+        
+       
+        methods:{
+             loadUser(){
+        
+            this.user =JSON.parse(window.sessionStorage.getItem("credz"));
+            console.log(this.user)
+          
+            
+
+        
+             }
+},
+beforeMount(){
+    this.loadUser()
+    },
+ 
+}
+</script>

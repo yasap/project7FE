@@ -5,6 +5,7 @@ import signin from "../views/signin.vue";
 import post from "../views/post.vue";
 import account from "../views/account.vue";
 import allPosts from "../views/allPosts.vue"
+import singlePost from "../views/singlePost.vue"
 const routes = [
   {
     path: '/',
@@ -32,9 +33,14 @@ const routes = [
     component: account
   },
   {
-    path: '/allPosts',
+    path: '/AllPost',
     name: 'allPosts',
     component: allPosts
+  },
+  {
+    path: '/post/:id',
+    name: 'singlePost',
+    component: singlePost
   },
  
 ]

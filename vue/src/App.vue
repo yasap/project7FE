@@ -6,6 +6,7 @@
     <router-link to="/signup">signup</router-link>|
     <router-link to="/signin">signin</router-link> |
     <router-link to="/AllPost">AllPost</router-link> |
+    <router-link to="/SinglePost">SinglePost</router-link> |
     
   </div>
   <router-view/>

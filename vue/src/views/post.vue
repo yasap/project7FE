@@ -61,13 +61,13 @@ export default {
             .then(result=>{
                 console.log("login result:" , result);
                 if(result.message){
-                    this.msg = result.message;
+                    this.$router.push("/allPost");
                 }
                 else{
-                    
                     window.location.href = "http://localhost:8080/allPost";
+            }
 
-                }
+                
             })
             .catch(e=>{
                 console.log(e);

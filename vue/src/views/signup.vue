@@ -56,7 +56,8 @@ export default {
                     this.msg = result.message;
                 }
                 else{
-                    window.location.href = "http://localhost:8080/login";
+                    this.$router.push("/signin")
+                    
 
                 }
             })

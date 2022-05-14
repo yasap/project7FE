@@ -48,15 +48,16 @@ export default {
             .then(res=>res.json())
             .then(result=>{
                 console.log("login result:" , result);
-                if(result.message){
-                    this.msg = result.message; 
+                if(result.error){
+                    this.msg = result.error; 
                     // this.listOfPost = result 
                     // how to diplay list item in vue.js
                 }
                 else{
                     window.sessionStorage.setItem("credz", JSON.stringify(result));
+                    this.$router.push("/AllPost")
                 
-                    window.location.href = "http://localhost:8080/post";
+                    // window.location.href = "http://localhost:8080/post";
 
                 }
             })
