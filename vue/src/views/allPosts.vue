@@ -3,44 +3,38 @@
     <div>
         <h3>Post Details</h3>
         <table class=" postTable">
-            <thead class="alignment">
-                <th>Id</th>
-                <th>title</th>
-                <th>date</th>
+            <thead>
+                <th>TITLE</th>
+                <th>ID</th>
+                <th>DATE</th>
             </thead>
             
             <tbody>
                 <tr v-for="post in ListOfPost" :key="post.post_id">
-                    <td>{{post.post_id}} </td>
                     <td><router-link v-bind:to="'/post/' +post.post_id">{{post.title}} </router-link></td>
+                    <td>{{post.post_id}} </td>
                     <td>{{new Date(post.date_created).toLocaleDateString()}} </td>
                 </tr>
             </tbody>    
         </table>
     </div>
-    <!-- <div class="align" v-for="post in ListOfPost" :key="post.post_id">
-        <ul class="main">
-    <li><h3>{{post.post_id}}</h3> 
-    <h2><router-link v-bind:to="'/post/' +post.post_id">{{post.title}} </router-link></h2>
-    <h5>{{post.date_created}} </h5></li>
-        </ul>
-    </div> -->
+   
 </template>
 <style >
-.main{
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
+.postTable , th , td {
+    text-decoration: 15px black ;
+     border: 3px solid; 
+     width: 100%; 
+    align-content: center;
+    padding: 15px;
    
-    /* align-content: space-between; */
 }
-.align{
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-     width: 100%;
-     list-style: none;
+th {
+    text-decoration: 25 black bold; 
+    height: 70px;
 }
+tr:hover {background-color: coral;}
+
 </style>
 <script>
 export default {

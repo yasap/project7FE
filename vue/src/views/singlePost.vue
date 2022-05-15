@@ -1,13 +1,32 @@
 
-<template>
+<template >
+<div class=sPost>
+<div >
+    {{this.post.post_id}}
+</div>
 <div>
     {{this.post.title}}
 </div>
 <div>
-    {{this.post.firstname}}
+    {{this.post.content}}
+</div>
+<div>
+    {{this.post.image}}
+</div>
+<div>
+   {{new Date(post.date_created).toLocaleDateString()}} 
+</div>
+<div>
+    {{this.post.author}}
+</div>
 </div>
 </template>
-
+<style>
+.sPost{
+   border: 10px  solid purple ;
+   
+}
+</style>
 <script>
 
 export default {
@@ -16,8 +35,11 @@ export default {
         return{
             post:{},
             id:0,
-            userId: 0
-
+            title: 0,
+            contant: 0,
+            image: 0 ,
+            date: 0 ,
+            author: 0
         }
 
         },
