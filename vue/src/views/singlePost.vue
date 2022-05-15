@@ -21,11 +21,16 @@
 </div>
 </div>
 </template>
+
 <style>
 .sPost{
-   border: 10px  solid purple ;
-   
+   border: 3px solid black ;
+   text-decoration: 35px black bold ;
+   background-color: rgb(245, 193, 174);
+   padding: 30px;
+   margin: 30px;
 }
+
 </style>
 <script>
 
