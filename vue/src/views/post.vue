@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
- <img src="/photo/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
+ <img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
 
 </header>
 
@@ -13,7 +13,7 @@
 
 </div>
 
-<form v-on:submit="onsubmit" class="post">
+<form v-on:submit="onsubmit"  enctype="multipart/form-data" class="post">
 
      <label for="text"> Title </label>
     <input type="text" id="title" placeholder="Title" name="title" required/>
@@ -52,8 +52,12 @@ export default {
             let token = session.token;
             let userID = session.userID;
             let url = "http://localhost:3000/api/post/addPost";
-            let body ={userID:userID, message:message, title:title, image:image};
-            let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
+            let formData = new FormData();
+            formData.append("userID", userID);
+            formData.append("message", message);
+            formData.append("title", title);
+            formData.append("image", image);
+            let options = {body:formData,method:"POST", headers: {"Authorization" : "Bearer " + token}};    
            
 
             fetch(url,options)

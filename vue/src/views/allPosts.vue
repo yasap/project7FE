@@ -1,18 +1,18 @@
 <template>
-
+<img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
     <div>
         <h3>Post Details</h3>
         <table class=" postTable">
             <thead>
                 <th>TITLE</th>
-                <th>ID</th>
+                <!-- <th>Author</th> -->
                 <th>DATE</th>
             </thead>
             
             <tbody>
                 <tr v-for="post in ListOfPost" :key="post.post_id">
                     <td><router-link v-bind:to="'/post/' +post.post_id">{{post.title}} </router-link></td>
-                    <td>{{post.post_id}} </td>
+                    <!-- <td>{{post.}} </td> -->
                     <td>{{new Date(post.date_created).toLocaleDateString()}} </td>
                 </tr>
             </tbody>    

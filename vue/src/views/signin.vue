@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
- <img src= "../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
+ <img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
  <!-- <aside class="sign"><a href="/signup.html"> Sign Up </a></aside> -->
 </header>
 <span class="feedback"> {{msg}}</span>

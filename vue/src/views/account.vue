@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
- <img src="/photo/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
+<img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
 </header>
 
 <div class="menu"> 
