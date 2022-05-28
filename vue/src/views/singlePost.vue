@@ -5,13 +5,10 @@
 <h1>
     {{this.post.title}}
 </h1>
-<!-- <div >
-    {{this.post.post_id}}
-</div> -->
 <p>
     {{this.post.content}}
 </p>
-<img 
+<img class="image"
 v-bind:src="this.post.image"/>
 <p>
    {{new Date(post.date_created).toLocaleDateString()}} 
@@ -24,13 +21,16 @@ v-bind:src="this.post.image"/>
 
 <style>
 .sPost{
-   border: 3px solid black ;
    text-decoration: 35px black bold ;
-   background-color: rgb(245, 193, 174);
    padding: 30px;
    margin: 30px;
 }
-
+@media screen and (min-width: 300px) and (max-width: 425px)  {
+ .image {
+     width: 30px;
+     height: 50px;
+ }
+ }
 </style>
 <script>
 

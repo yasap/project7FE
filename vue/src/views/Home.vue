@@ -116,16 +116,6 @@ header {
    border: 5px solid rgb(40, 8, 100);
  }
 
- /*post page*/
-
- /* .post {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   padding: 40px;
-   margin: 30px;
-   border: 2px solid black;
- } */
  #description {
    width: 773px;
    height: 350px;

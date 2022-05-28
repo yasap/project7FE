@@ -42,7 +42,7 @@ export default {
             let url = "http://localhost:3000/api/auth/login";
             let body ={userEmail:emailAddress, password:pass};
             let options = {body:JSON.stringify(body),method:"POST", headers: {"Content-type":"application/json"}};    
-            // /Authorization" : "Bearer" + token
+          
 
             fetch(url,options)
             .then(res=>res.json())
@@ -50,15 +50,10 @@ export default {
                 console.log("login result:" , result);
                 if(result.error){
                     this.msg = result.error; 
-                    // this.listOfPost = result 
-                    // how to diplay list item in vue.js
                 }
                 else{
                     window.sessionStorage.setItem("credz", JSON.stringify(result));
                     this.$router.push("/AllPost")
-                
-                    // window.location.href = "http://localhost:8080/post";
-
                 }
             })
             .catch(e=>{
