@@ -5,14 +5,12 @@
         <table class=" postTable">
             <thead>
                 <th>TITLE</th>
-                <!-- <th>Author</th> -->
                 <th>DATE</th>
             </thead>
             
             <tbody>
                 <tr v-for="post in ListOfPost" :key="post.post_id">
                     <td><router-link v-bind:to="'/post/' +post.post_id">{{post.title}} </router-link></td>
-                    <!-- <td>{{post.}} </td> -->
                     <td>{{new Date(post.date_created).toLocaleDateString()}} </td>
                 </tr>
             </tbody>    
@@ -53,17 +51,13 @@ export default {
             let session =JSON.parse(window.sessionStorage.getItem("credz"));
             let token = session.token;
             let url = "http://localhost:3000/api/post/";
-            // let body ={userID:userID, message:message, title:title, image:image};
             let options = {method:"GET", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
-        //  var date = new Date(post.date_created);
-        //  date.toString("MMM dd");
+       
 
            fetch(url,options)
             .then(res=>res.json())
             .then(result=>{
                 console.log("allPosts result:" , result);
-                // this.result.date_created;
-                // console.log(this.result.date_created)
                 this.ListOfPost = result
                 console.log(this.ListOfPost)
                 

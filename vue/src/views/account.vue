@@ -15,6 +15,8 @@
     <h4>Last Name: {{this.user.lastName}}</h4>
     <h4>E-mail: {{this.user.email}}</h4>
     <h4>ID: {{this.user.userID}}</h4>
+    <button v-on:click= "deleteAccount">  delete account </button>
+    <span> {{this.feedback}}</span>
 </div>
         </div>
 </template>
@@ -26,6 +28,7 @@ export default {
     data(){
         return{
             user:{},
+            feedback:""
 
         }
 
@@ -37,11 +40,29 @@ export default {
         
             this.user =JSON.parse(window.sessionStorage.getItem("credz"));
             console.log(this.user)
-          
-            
-
-        
-             }
+          },
+          deleteAccount(){
+              
+              let confirmation = confirm("your account will be deleted after this confirmation");
+              if (confirmation){
+                  let url = "http://localhost:3000/api/auth/delete/" +this.user.userID;
+                  console.log(url);
+                  let options = {method:"DELETE", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + this.user.token}};    
+       
+                 fetch(url,options)
+                 .then(res=>res.json())
+                 .then(result =>{
+                    if(result.error){
+                        this.feedback = result.error
+                    }
+                    else{
+                        window.sessionStorage.clear();
+                        this.$router.push("/signin")
+                    }
+                 }) 
+              }
+              
+          }
 },
 beforeMount(){
     this.loadUser()
