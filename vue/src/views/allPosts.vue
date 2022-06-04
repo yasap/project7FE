@@ -6,12 +6,14 @@
             <thead>
                 <th>TITLE</th>
                 <th>DATE</th>
+                <th>read</th>
             </thead>
             
             <tbody>
                 <tr v-for="post in ListOfPost" :key="post.post_id">
                     <td><router-link v-bind:to="'/post/' +post.post_id">{{post.title}} </router-link></td>
                     <td>{{new Date(post.date_created).toLocaleDateString()}} </td>
+                     <td><button :disabled= "isDisabled(post.post_id)" v-on:click= "markAsRead(post.post_id)"> Mark as read  </button> </td>
                 </tr>
             </tbody>    
         </table>
@@ -40,9 +42,12 @@ export default {
     data(){
         return{
             ListOfPost:[],
+            readPost:[]
         }
 
         },
+
+       
         
        
         methods:{
@@ -68,10 +73,71 @@ export default {
             })
 
         
+             },
+             isDisabled(id){
+                let result = false;
+                for(let post of this.readPost){
+                    if(post.postid === id){
+                         result = true;
+                         break;
+                     }
              }
+                return result
+            },
+            
+             loadReadPost(){
+        
+            let session =JSON.parse(window.sessionStorage.getItem("credz"));
+            let token = session.token;
+            const userID = session.userID;
+            let url = `http://localhost:3000/api/post/readPost/${userID}`;
+            let options = {method:"GET", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
+       
+
+           fetch(url,options)
+            .then(res=>res.json())
+            .then(result=>{
+                console.log("readPostresult:" , result);
+                this.readPost = result
+                console.log(this.readPost)
+                
+            })
+            .catch (error =>{
+                console.log(error);
+
+            })
+
+        
+             },
+             markAsRead(id){
+                 console.log(id);
+
+        let session =JSON.parse(window.sessionStorage.getItem("credz"));
+            let token = session.token;
+            const userID = session.userID;
+            let url = "http://localhost:3000/api/post/read";
+           const payload = {userID: userID, postID:id};
+            let options = {body:JSON.stringify(payload),method:"POST", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
+          
+
+            fetch(url,options)
+            .then(res=>res.json())
+            .then(result=>{
+                console.log("allPosts result:" , result);
+                
+                
+            })
+            .catch (error =>{
+                console.log(error);
+
+            })
+
+             }
+
 },
 beforeMount(){
             this.loadPosts()
+            this.loadReadPost()
         },
  
 }
