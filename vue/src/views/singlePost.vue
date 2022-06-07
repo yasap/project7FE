@@ -27,8 +27,7 @@ v-bind:src="this.post.image"/>
 }
 @media screen and (min-width: 300px) and (max-width: 425px)  {
  .image {
-     width: 30px;
-     height: 50px;
+     width: 70%;
  }
  }
 </style>
@@ -45,6 +44,30 @@ export default {
         
        
         methods:{
+            readPost(id){
+                 console.log(id);
+
+        let session =JSON.parse(window.sessionStorage.getItem("credz"));
+            let token = session.token;
+            const userID = session.userID;
+            let url = "http://localhost:3000/api/post/read";
+           const payload = {userID: userID, postID:id};
+            let options = {body:JSON.stringify(payload),method:"POST", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
+          
+
+            fetch(url,options)
+            .then(res=>res.json())
+            .then(result=>{
+                console.log("allPosts result:" , result);
+                
+                
+            })
+            .catch (error =>{
+                console.log(error);
+
+            })
+
+             },
              loadPosts(){
         
             let session =JSON.parse(window.sessionStorage.getItem("credz"));
@@ -58,7 +81,9 @@ export default {
             .then(res=>res.json())
             .then(result=>{
                 console.log("allPosts result:" , result);
-                this.post = result
+                this.post = result;
+                this.readPost(this.$route.params.id)
+
             })
             .catch (error =>{
                 console.log(error);
@@ -68,6 +93,7 @@ export default {
         
              }
 },
+
 mounted(){
     this.loadPosts()
         },

@@ -1,6 +1,7 @@
 <template>
 <img src="../assets/icon-left-font-monochrome-black.png" alt="groupomania" width="200px" height="200px">
     <div>
+        <span> {{this.UnreadPostCount}} </span>
         <h3>Post Details</h3>
         <table class=" postTable">
             <thead>
@@ -37,12 +38,14 @@ tr:hover {background-color: coral;}
 
 </style>
 <script>
+let session =JSON.parse(window.sessionStorage.getItem("credz"));
 export default {
     name: 'allPost',
     data(){
         return{
             ListOfPost:[],
-            readPost:[]
+            readPost:[],
+            UnreadPostCount:0
         }
 
         },
@@ -53,7 +56,7 @@ export default {
         methods:{
              loadPosts(){
         
-            let session =JSON.parse(window.sessionStorage.getItem("credz"));
+            
             let token = session.token;
             let url = "http://localhost:3000/api/post/";
             let options = {method:"GET", headers: {"Content-type":"application/json" ,"Authorization" : "Bearer " + token}};    
@@ -84,6 +87,20 @@ export default {
              }
                 return result
             },
+            countUnread(){
+                let counter = 0;
+                this.ListOfPost.forEach(element => {
+                    this.readPost.forEach(e =>{
+                        if(e.postid == element.post_id && e.userid == session.userID)  {
+                            counter++;
+                            }
+
+                        })
+                    
+                });
+                this.UnreadPostCount = this.ListOfPost.length - counter;
+
+            },
             
              loadReadPost(){
         
@@ -98,8 +115,9 @@ export default {
             .then(res=>res.json())
             .then(result=>{
                 console.log("readPostresult:" , result);
-                this.readPost = result
-                console.log(this.readPost)
+                this.readPost = result;
+                console.log(this.readPost);
+                this.countUnread();
                 
             })
             .catch (error =>{
@@ -136,8 +154,9 @@ export default {
 
 },
 beforeMount(){
-            this.loadPosts()
-            this.loadReadPost()
+            this.loadPosts();
+            this.loadReadPost();
+            this.countUnread()
         },
  
 }
